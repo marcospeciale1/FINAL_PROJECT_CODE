@@ -33,8 +33,8 @@
 - POST /api/cart/add/:id: Aggiunge un prodotto al carrello dell'utente.
 - DELETE /api/cart/remove/:id: Rimuove un prodotto dal carrello dell'utente.
 - DELETE /api/cart/clear: Svuota il carrello dell'utente.
-- API degli Ordini:
 
+- API degli Ordini:
 - GET /api/orders: Restituisce lo storico degli ordini dell'utente.
 - Opzionale: implementare un sistema di paginazione per migliorare le performance dell’API
 - POST /api/orders: Permette agli utenti di creare un nuovo ordine a partire dai prodotti presenti attualmente nel carrello, con l’aggiunta dei dati di spedizione necessari  

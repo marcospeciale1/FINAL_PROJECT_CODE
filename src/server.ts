@@ -1,14 +1,16 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
+import { config } from 'dotenv';
 /*****************************
  *                           *
  *  INIZIALIZZAZIONE SERVER  *
  *                           *
  *****************************/
+config();
 
 const port = process.env.PORT || 3000
 const baseURL =  "http://localhost"
-const url_db = process.env.BASE_URL_DB;
+// const url_db = process.env.BASE_URL_DB;
 
 // creiamo un applicazione express
 const app = express();
@@ -39,7 +41,6 @@ const client = createClient({
  *****************************/
 
 app.get("/api/products", (req: Request, res: Response) => {
-    
     client.query("SELECT * FROM products")
 })
 
@@ -51,7 +52,7 @@ app.get("/api/products", (req: Request, res: Response) => {
 /*****************************
  *       API CART            *
  *****************************/
-app.get("/api/cart3",(req: Request, res:Response) =>{
+app.get("/api/carts",(req: Request, res:Response) =>{
 })
 
 
