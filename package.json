@@ -1,7 +1,7 @@
 {
     "scripts": {
       "build": "tsc --noEmit && tsc --outDir build",
-      "dev": "npm run build && node build/index.js",
+      "dev": "npm run build && node build/server.js",
       "start": "nodemon"
     },
     "devDependencies": {
