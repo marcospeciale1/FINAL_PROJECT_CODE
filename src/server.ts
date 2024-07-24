@@ -1,6 +1,9 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from 'dotenv';
+import "dotenv/config";
+export const router = express.Router();
+export const routerUser = express.Router();
 /*****************************
  *                           *
  *  INIZIALIZZAZIONE SERVER  *
@@ -52,9 +55,6 @@ app.get("/api/products", (req: Request, res: Response) => {
 /*****************************
  *       API CART            *
  *****************************/
-app.get("/api/carts",(req: Request, res:Response) =>{
-})
-
 
 
 /*****************************
