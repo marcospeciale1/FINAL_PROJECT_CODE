@@ -26,6 +26,8 @@ const client = createClient({
     connectionString: process.env.DATABASE_URL,
   });
 
+  client.connect();
+
 /*****************************
  *                           *
  *  INIZIALIZZAZIONE SERVER  *
@@ -43,9 +45,74 @@ const client = createClient({
  *       API PRODUCTS        *
  *****************************/
 
-app.get("/api/products", (req: Request, res: Response) => {
-    client.query("SELECT * FROM products")
+app.get("/api/products", async (req: Request, res: Response) => {
+    const products = await client.query("SELECT * FROM products")
+    res.status(200).json(products.rows)
 })
+
+
+// create
+app.post("/api/products",(req: Request, res: Response) => {
+
+    const { title, price, category, description, image } = req.body;
+    
+    client.query("INSERT INTO products ( title, price, category, description, image) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+        [ title, price, category, description, image],
+        (err,result)=> {
+            if(err) return res.status(400).json({err});
+            else return res.status(200).json(result.rows)    
+        }
+    );
+   
+});
+
+// reade
+app.get("/api/products/:id",(req: Request, res: Response) => {
+    
+    const productId = req.params.id
+
+    client.query( 'SELECT * FROM products WHERE id = $1',[productId],
+    (err,result)=>{
+        if(err) return res.status(400).json({err});
+        else return res.status(200).json(result.rows)
+    });
+     
+})
+
+
+// update
+app.put("/api/products/:id",(req: Request, res: Response) => {
+
+    const productId = req.params.id
+
+    const {title, price, category, description, image } = req.body;
+
+    client.query('UPDATE products SET title = $1, price = $2, category = $3, description = $4, image = $5 WHERE id = $6',
+        [title, price, category, description, image, productId],
+        (err,result)=>{
+            if(err) return res.status(400).json({err});
+            else return res.status(200).json(result.rows)
+        }
+    );
+
+})
+
+
+// delete
+app.delete('/api/products/:id', (req: Request, res: Response) => {
+
+    const productId = req.params.id
+
+    client.query('DELETE FROM products WHERE id = $1', [productId],
+        (err,result)=>{
+            if(err) return res.status(400).json({err});
+            else return res.status(200).json(result.rows)
+        }
+    )
+
+})
+
+
 
 
 /*****************************
