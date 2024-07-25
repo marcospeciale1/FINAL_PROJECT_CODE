@@ -1,17 +1,22 @@
 #  USERS SECTION
 
+### GET USERS
+
+GET http://localhost:3000/api/auth/users
+Content-Type: application/json
+
 ### REGISTER USER
 
 POST http://localhost:3000/api/auth/register
 Content-Type: application/json
 
 {
-    "email": "case@gmail.com",
-    "username": "JohnDoe",
-    "password": "345",
+    "email": "name@gmail.com",
+    "username": "Carl",
+    "password": "789",
     "firstname": "Francesco",
-    "lastname": "Coniglio",
-    "citta": "Bologna",
+    "lastname": "serauto",
+    "citta": "Roma",
     "indirizzo": "via Roma 4"
 }
 
@@ -36,29 +41,23 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "case@gmail.com",
-    "password": "345"
+    "email": "example@gmail.com",
+    "password": "1234"
 }
 
-### LOGOUT ADMIN
+### LOGOUT 
 
-POST http://localhost:3000/api/auth/logout
+GET  http://localhost:3000/api/auth/logout
 Content-Type: application/json
-Authorization: Bearer JWT_ACCESS_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwidXNlcm5hbWUiOiJKb2huRG9lIiwicGFzc3dvcmQiOiIxMjM0IiwiZmlyc3RuYW1lIjoiRnJhbmNlc2NvIiwibGFzdG5hbWUiOiJDb25pZ2xpbyIsImNpdHRhIjoiQm9sb2duYSIsImluZGlyaXp6byI6InZpYSBSb21hIDQifSwiaWF0IjoxNzIxOTA4MjAxLCJleHAiOjE3MjE5MTAwMDF9.INiBWrEk4XsqNLuCR31pftABRF2HxVADsBoZCvZP6M8
 
-{
-    "id": 3
-}
 
 ### GET USERS LOGGED
 
-GET http://localhost:3000/api/auth/user
+GET http://localhost:3000/api/auth/user/1
 Content-Type: application/json
-Authorization: Bearer JWT_ACCESS_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwidXNlcm5hbWUiOiJKb2huRG9lIiwicGFzc3dvcmQiOiIxMjM0IiwiZmlyc3RuYW1lIjoiRnJhbmNlc2NvIiwibGFzdG5hbWUiOiJDb25pZ2xpbyIsImNpdHRhIjoiQm9sb2duYSIsImluZGlyaXp6byI6InZpYSBSb21hIDQifSwiaWF0IjoxNzIxOTA3Njg4LCJleHAiOjE3MjE5MDk0ODh9.mBR-vIFluruCBydfdb1X7Nz_XK-1bYJINPPqP-6xL28
 
-{
-    "id": 4
-}
 
 # |----------------------|
 
