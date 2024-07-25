@@ -1,6 +1,7 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
-import { config } from "dotenv";
+import { config } from 'dotenv';
+
 
 /*****************************
  *                           *
@@ -27,6 +28,8 @@ const client = createClient({
 client.connect();
 
 
+client.connect();
+
 /*****************************
  *                           *
  *  INIZIALIZZAZIONE SERVER  *
@@ -42,10 +45,6 @@ client.connect();
 
 /*****************************
  *       API USERS           *
- *****************************/
-
-/*****************************
- *       API PRODUCTS        *
  *****************************/
 
 
