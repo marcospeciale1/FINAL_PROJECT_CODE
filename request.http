@@ -52,13 +52,9 @@ Authorization: Bearer JWT_ACCESS_TOKEN
 
 ### GET USERS LOGGED
 
-GET http://localhost:3000/api/auth/user
+GET http://localhost:3000/api/auth/user/1
 Content-Type: application/json
-Authorization: Bearer JWT_ACCESS_TOKEN
 
-{
-    "id": 4
-}
 
 # |----------------------|
 
