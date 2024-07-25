@@ -2,6 +2,12 @@ import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from "dotenv";
 
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import {
+  generateAccessToken,
+  authenticateToken,
+} from "./JWT/authenticateToken";
 
 /*****************************
  *                           *
@@ -27,9 +33,6 @@ const client = createClient({
 
 client.connect();
 
-
-client.connect();
-
 /*****************************
  *                           *
  *  INIZIALIZZAZIONE SERVER  *
@@ -42,11 +45,13 @@ client.connect();
  *       API USERS           *
  *****************************/
 
-
 /*****************************
  *       API USERS           *
  *****************************/
 
+/*****************************
+ *       API PRODUCTS        *
+ *****************************/
 
 /*****************************
  *       API PRODUCTS        *
