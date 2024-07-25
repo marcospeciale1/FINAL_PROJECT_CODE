@@ -13,7 +13,7 @@ const client = createClient({
 
 // Restituisce il contenuto attuale del carrello dell'utente.
 
-routerCart.get("/api/cart",(req: Request, res:Response) =>{
+routerCart.get("",(req: Request, res:Response) =>{
     client.query(`SELECT * FROM carts`, function (error, response) {
           res.status(200).json(response.rows);
       });
@@ -21,7 +21,7 @@ routerCart.get("/api/cart",(req: Request, res:Response) =>{
 
 // Aggiunge un prodotto al carrello dell'utente.
 
- routerCart.post("/api/cart/add/:id", (req: Request, res: Response) => {
+ routerCart.post("/add/:id", (req: Request, res: Response) => {
     console.log(req.params)
     client.query(`INSERT INTO carts (userid, productid, quantity) VALUES ($1, $2, $3)`, 
         [ req.params.id, req.body.productid,req.body.quantity],
@@ -33,7 +33,7 @@ routerCart.get("/api/cart",(req: Request, res:Response) =>{
 
 // Rimuove un prodotto dal carrello dell'utente.
 
- routerCart.delete("/api/cart/remove/:id", (req: Request, res: Response) => {
+ routerCart.delete("/remove/:id", (req: Request, res: Response) => {
     client.query(`DELETE FROM carts WHERE id = $1`, [req.params.id], function (error, response) {
         if(error) res.status(500).json({ error });
         else res.status(200).json(response.rows);
@@ -42,7 +42,7 @@ routerCart.get("/api/cart",(req: Request, res:Response) =>{
 
 // Svuota il carrello dell'utente.
 
- routerCart.delete("/api/cart/clear", (req: Request, res: Response) => {
+ routerCart.delete("/clear", (req: Request, res: Response) => {
     client.query(`DELETE FROM carts`, function (error, response) {
         if(error) res.status(500).json({ error });
         else res.status(200).json(response.rows);

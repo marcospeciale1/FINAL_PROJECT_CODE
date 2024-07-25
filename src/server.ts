@@ -8,6 +8,9 @@ import {
   generateAccessToken,
   authenticateToken,
 } from "./JWT/authenticateToken";
+import { routerUser } from "./routers/user";
+import { routerProducts } from "./routers/products";
+import { routerCart } from "./routers/cart";
 
 /*****************************
  *                           *
@@ -44,7 +47,7 @@ client.connect();
 /*****************************
  *       API USERS           *
  *****************************/
-
+app.use("/api/auth", routerUser)
 /*****************************
  *       API USERS           *
  *****************************/
@@ -52,7 +55,7 @@ client.connect();
 /*****************************
  *       API PRODUCTS        *
  *****************************/
-
+app.use("/api/auth", routerProducts)
 /*****************************
  *       API PRODUCTS        *
  *****************************/
@@ -60,17 +63,17 @@ client.connect();
 /*****************************
  *       API CART            *
  *****************************/
-
+app.use("/api/auth", routerCart)
 /*****************************
  *       API CART            *
  *****************************/
 
 /*****************************
- *       API orders          *
+ *       API ORDERS          *
  *****************************/
 
 /*****************************
- *       API orders          *
+ *       API ORDERS          *
  *****************************/
 
 /*****************************

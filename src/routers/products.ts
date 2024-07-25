@@ -8,14 +8,14 @@ const client = createClient({
   connectionString: process.env.DATABASE_URL,
 });
 
-routerProducts.get("/api/products", async (req: Request, res: Response) => {
+routerProducts.get("", async (req: Request, res: Response) => {
   const products = await client.query("SELECT * FROM products");
   res.status(200).json(products.rows);
 });
 
 // create
 routerProducts.post(
-  "/api/products",
+  "",
   authenticateToken,
   (req: Request, res: Response) => {
     const { title, price, category, description, image } = req.body;
@@ -32,7 +32,7 @@ routerProducts.post(
 );
 
 // reade
-routerProducts.get("/api/products/:id", (req: Request, res: Response) => {
+routerProducts.get("/:id", (req: Request, res: Response) => {
   const productId = req.params.id;
 
   client.query(
@@ -47,7 +47,7 @@ routerProducts.get("/api/products/:id", (req: Request, res: Response) => {
 
 // update
 routerProducts.put(
-  "/api/products/:id",
+  "/:id",
   authenticateToken,
   (req: Request, res: Response) => {
     const productId = req.params.id;
@@ -67,7 +67,7 @@ routerProducts.put(
 
 // delete
 routerProducts.delete(
-  "/api/products/:id",
+  "/:id",
   authenticateToken,
   (req: Request, res: Response) => {
     const productId = req.params.id;

@@ -12,7 +12,7 @@ const client = createClient({
 
 export const routerUser = express.Router();
 
-routerUser.post("/api/auth/register", (req: Request, res: Response) => {
+routerUser.post("/register", (req: Request, res: Response) => {
   const { email, username, password, firstname, lastname, citta, indirizzo } =
     req.body;
   client.query(
@@ -32,7 +32,7 @@ routerUser.post("/api/auth/register", (req: Request, res: Response) => {
   );
 });
 
-routerUser.post("/api/auth/admin/register", (req: Request, res: Response) => {
+routerUser.post("/admin/register", (req: Request, res: Response) => {
   const { email, username, password, firstname, lastname, citta, indirizzo } =
     req.body;
   client.query(
@@ -52,7 +52,7 @@ routerUser.post("/api/auth/admin/register", (req: Request, res: Response) => {
   );
 });
 
-routerUser.post("/api/auth/login", (req: Request, res: Response) => {
+routerUser.post("/login", (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   client.query(
@@ -85,7 +85,7 @@ routerUser.post("/api/auth/login", (req: Request, res: Response) => {
 });
 
 routerUser.get(
-  "/api/auth/logout",
+  "/logout",
   authenticateToken,
   (req: Request, res: Response) => {
     const authHeader = req.headers["authorization"];
@@ -110,7 +110,7 @@ routerUser.get(
 );
 
 routerUser.get(
-  "/api/auth/user/:id",
+  "/user/:id",
   authenticateToken,
   (req: Request, res: Response) => {
     const { id } = req.params;
@@ -125,7 +125,7 @@ routerUser.get(
 );
 
 
-routerUser.get("/api/auth/users", (req: Request, res: Response) => {
+routerUser.get("/users", (req: Request, res: Response) => {
   client.query("SELECT * FROM users", (error, response) => {
     res.json(response.rows);
   });
