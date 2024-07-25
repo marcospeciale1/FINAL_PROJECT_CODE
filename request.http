@@ -71,26 +71,30 @@ Content-Type: application/json
 
 ### GET PRODUCT BY ID
 
-GET http://localhost:3000/api/products/1
+GET http://localhost:3000/api/products/3
 Content-Type: application/json
 
 ### CREATE PRODUCT BY ADMIN
 
 POST http://localhost:3000/api/products
 Content-Type: application/json
+Authorization: Bearer
+
 
 {
-    "title": "prodotto",
-    "price": 33,
-    "category": "gaming",
+    "title": "iphone",
+    "price": 2000,
+    "category": "phone",
     "description": "bello",
     "image": "ciccio"
 }
 
 ### UPDATE PRODUCT BY ADMIN
 
-PUT http://localhost:3000/api/products/1
+PUT http://localhost:3000/api/products/6
 Content-Type: application/json
+Authorization: Bearer
+
 
 {
     "title": "prodotto modificato",
@@ -102,7 +106,9 @@ Content-Type: application/json
 
 
 ### DELETE PRODUCT BY ADMIN
-DELETE http://localhost:3000/api/products/1
+DELETE http://localhost:3000/api/products/5
 Content-Type: application/json
+Authorization: Bearer
+
 
 
