@@ -4,23 +4,27 @@ import { config } from 'dotenv';
 import "dotenv/config"
 export const routerCart = express.Router();
 
-/*app.get("/api/carts",(req: Request, res:Response) =>{
-})
+
+
+const client = createClient({
+    connectionString: process.env.DATABASE_URL,
+  });
+  client.connect();
 
 // Restituisce il contenuto attuale del carrello dell'utente.
 
-app.get("/api/carts",(req: Request, res:Response) =>{
-    client.query(`SELECT * FROM cart`, function (error, response) {
-        if (error) res.status(500).json({ error });
-    else res.status(200).json(response.rows);
+routerCart.get("/api/cart",(req: Request, res:Response) =>{
+    client.query(`SELECT * FROM carts`, function (error, response) {
+          res.status(200).json(response.rows);
       });
 })
 
 // Aggiunge un prodotto al carrello dell'utente.
 
-app.post("/api/cart/add/:id", (req: Request, res: Response) => {
-    client.query(`INSERT INTO cart (id, userId, productId, quiantity) VALUES ($1, $2, $3, $4)`, 
-        [{id: req.params.id, userId: req.body.userId, productid: req.body.productid, quiantity: req.body.quiantity}],
+ routerCart.post("/api/cart/add/:id", (req: Request, res: Response) => {
+    console.log(req.params)
+    client.query(`INSERT INTO carts (userid, productid, quantity) VALUES ($1, $2, $3)`, 
+        [ req.params.id, req.body.productid,req.body.quantity],
          function (error, response) {
         if(error) res.status(500).json({ error });
         else res.status(200).json(response.rows);
@@ -29,8 +33,8 @@ app.post("/api/cart/add/:id", (req: Request, res: Response) => {
 
 // Rimuove un prodotto dal carrello dell'utente.
 
-app.delete("/api/cart/remove/:id", (req: Request, res: Response) => {
-    client.query(`DELETE FROM cart WHERE id = $1`, [req.params.id], function (error, response) {
+ routerCart.delete("/api/cart/remove/:id", (req: Request, res: Response) => {
+    client.query(`DELETE FROM carts WHERE id = $1`, [req.params.id], function (error, response) {
         if(error) res.status(500).json({ error });
         else res.status(200).json(response.rows);
     })
@@ -38,10 +42,10 @@ app.delete("/api/cart/remove/:id", (req: Request, res: Response) => {
 
 // Svuota il carrello dell'utente.
 
-app.delete("/api/cart/clear", (req: Request, res: Response) => {
-    client.query(`DELETE FROM cart`, function (error, response) {
+ routerCart.delete("/api/cart/clear", (req: Request, res: Response) => {
+    client.query(`DELETE FROM carts`, function (error, response) {
         if(error) res.status(500).json({ error });
         else res.status(200).json(response.rows);
        
     })
-})*/
+})
