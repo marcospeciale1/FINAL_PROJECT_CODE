@@ -1,6 +1,9 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from "dotenv";
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+
 
 /*****************************
  *                           *
