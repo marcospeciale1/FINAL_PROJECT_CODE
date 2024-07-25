@@ -90,10 +90,11 @@ routerUser.get("/api/auth/logout", authenticateToken, (req: Request, res: Respon
   );
 });
 
-routerUser.get("/api/auth/user", (req: Request, res: Response) => {
-  const { id } = req.body;
-  client.query("SELECT * FROM users WHERE id = $1", [id], (error, response) => {
-    res.json(response.rows);
+routerUser.get("/api/auth/user/:id", (req: Request, res: Response) => {
+  let id = req.params.id
+  client.query("SELECT * FROM users WHERE id = $1",[id], (error, response) => {
+    if(error) res.status(401).json(error);
+    else res.json(response.rows[0]);
   });
 });
 
