@@ -62,7 +62,7 @@ routerUser.post("/api/auth/login", (req: Request, res: Response) => {
           message: err.message,
         });
       } else {
-        const token = generateAccessToken({ user:result.rows[0] });
+        const token = generateAccessToken(result.rows[0]);
         res.status(200).json(token);
       }
     }
