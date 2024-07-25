@@ -1,6 +1,7 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
-import { config } from 'dotenv';
+import { config } from "dotenv";
+
 /*****************************
  *                           *
  *  INIZIALIZZAZIONE SERVER  *
@@ -8,8 +9,8 @@ import { config } from 'dotenv';
  *****************************/
 config();
 
-const port = process.env.PORT || 3000
-const baseURL =  "http://localhost"
+const port = process.env.PORT || 3000;
+const baseURL = "http://localhost";
 // const url_db = process.env.BASE_URL_DB;
 
 // creiamo un applicazione express
@@ -17,11 +18,15 @@ const app = express();
 //istanziare un server
 const server = express.json();
 // inizializziamo un server
-app.use(server)
+app.use(server);
 
 const client = createClient({
-    connectionString: process.env.DATABASE_URL,
-  });
+  connectionString: process.env.DATABASE_URL,
+});
+
+client.connect();
+
+  client.connect();
 
 /*****************************
  *                           *
@@ -29,20 +34,20 @@ const client = createClient({
  *                           *
  *****************************/
 
-/*****************************
- *                           *
- *      RICHIESTE CRUD       *
- *        EXAMPLE            *
- *****************************/
-
 /*-------------------------------------------- */
+
+/*****************************
+ *       API USERS           *
+ *****************************/
+
+
+/*****************************
+ *       API USERS           *
+ *****************************/
+
 /*****************************
  *       API PRODUCTS        *
  *****************************/
-
-app.get("/api/products", (req: Request, res: Response) => {
-    client.query("SELECT * FROM products")
-})
 
 
 /*****************************
@@ -52,31 +57,18 @@ app.get("/api/products", (req: Request, res: Response) => {
 /*****************************
  *       API CART            *
  *****************************/
-app.get("/api/carts",(req: Request, res:Response) =>{
-})
-
-
 
 /*****************************
  *       API CART            *
  *****************************/
 
-
-
 /*****************************
  *       API orders          *
  *****************************/
 
-
-
-
-
 /*****************************
  *       API orders          *
  *****************************/
-
-
-
 
 /*****************************
  *                           *
@@ -86,5 +78,5 @@ app.get("/api/carts",(req: Request, res:Response) =>{
 // inizializiamo le porte da cui runnare il server
 // PRIMO PARAMETRO PORTA SU CUI RUNNARE
 app.listen(3000, () => {
-    console.log("server is running in "+baseURL+ port)
-})
+  console.log("server is running in " + baseURL + port);
+});
