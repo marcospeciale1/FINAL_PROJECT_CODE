@@ -1,6 +1,5 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
-import { config } from "dotenv";
 import "dotenv/config";
 
 const client = createClient({

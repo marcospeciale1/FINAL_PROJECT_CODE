@@ -26,7 +26,6 @@ const client = createClient({
 
 client.connect();
 
-  client.connect();
 
 /*****************************
  *                           *
