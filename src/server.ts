@@ -1,13 +1,12 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from "dotenv";
+
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import {
-  generateAccessToken,
-  authenticateToken,
-} from "./JWT/authenticateToken";
-import { log } from "console";
+import {generateAccessToken, authenticateToken} from "./JWT/authenticateToken";
+
+
 
 /*****************************
  *                           *
@@ -169,6 +168,7 @@ app.get("/api/auth/users", (req: Request, res: Response) => {
 /*****************************
  *       API PRODUCTS        *
  *****************************/
+
 
 /*****************************
  *       API PRODUCTS        *

@@ -78,6 +78,7 @@ routerUser.post("/api/auth/login", (req: Request, res: Response) => {
             }
           }
         );
+
       }
     }
   );
@@ -122,6 +123,7 @@ routerUser.get(
     );
   }
 );
+
 
 routerUser.get("/api/auth/users", (req: Request, res: Response) => {
   client.query("SELECT * FROM users", (error, response) => {
