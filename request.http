@@ -1,10 +1,81 @@
-### lista prodotti
+#  USERS SECTION
 
+### REGISTER USER
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "case@gmail.com",
+    "username": "JohnDoe",
+    "password": "345",
+    "firstname": "Francesco",
+    "lastname": "Coniglio",
+    "citta": "Bologna",
+    "indirizzo": "via Roma 4"
+}
+
+### REGISTER ADMIN
+
+POST http://localhost:3000/api/auth/admin/register
+Content-Type: application/json
+
+{
+    "email": "adim@gmail.com",
+    "username": "Admin",
+    "password": "567",
+    "firstname": "Admin",
+    "lastname": "Admin",
+    "citta": "Bologna",
+    "indirizzo": "via Roma 4"
+}
+
+### LOGIN USER
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "case@gmail.com",
+    "password": "345"
+}
+
+### LOGOUT ADMIN
+
+POST http://localhost:3000/api/auth/logout
+Content-Type: application/json
+Authorization: Bearer JWT_ACCESS_TOKEN
+
+{
+    "id": 3
+}
+
+### GET USERS LOGGED
+
+GET http://localhost:3000/api/auth/user
+Content-Type: application/json
+Authorization: Bearer JWT_ACCESS_TOKEN
+
+{
+    "id": 4
+}
+
+# |----------------------|
+
+
+# PRODOCTS SECTION
+
+### GET ALL PRODUCTS
 GET http://localhost:3000/api/products
 Content-Type: application/json
 
+### GET PRODUCT BY ID
 
-### create product
+GET http://localhost:3000/api/products/1
+Content-Type: application/json
+
+### CREATE PRODUCT BY ADMIN
+
 POST http://localhost:3000/api/products
 Content-Type: application/json
 
@@ -16,12 +87,8 @@ Content-Type: application/json
     "image": "ciccio"
 }
 
-### reade product
-GET http://localhost:3000/api/products/1
-Content-Type: application/json
+### UPDATE PRODUCT BY ADMIN
 
-
-### update product
 PUT http://localhost:3000/api/products/1
 Content-Type: application/json
 
@@ -34,6 +101,8 @@ Content-Type: application/json
 }
 
 
-### delete product
+### DELETE PRODUCT BY ADMIN
 DELETE http://localhost:3000/api/products/1
 Content-Type: application/json
+
+
