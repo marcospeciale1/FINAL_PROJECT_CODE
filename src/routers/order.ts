@@ -10,6 +10,7 @@ const client = createClient({
   connectionString: process.env.DATABASE_URL,
 });
 
+//Apertura connessione database
 client.connect();
 
 // Restituisce lo storico degli ordini dell'utente.

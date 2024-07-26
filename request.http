@@ -144,17 +144,53 @@ GET http://localhost:3000/api/orders/orderid
 Content-Type: application/json
 Authorization: Bearer
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### CHANGE STATUS FROM ADMIN
-PATCH http://localhost:3000/api/orders/id
+PATCH http://localhost:3000/api/orders/6
 Content-Type: application/json
-Authorization: Bearer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJlbWFpbCI6ImFkaW1AZ21haWwuY29tIiwidXNlcm5hbWUiOiJBZG1pbiIsInBhc3N3b3JkIjoiNTY3IiwiZmlyc3RuYW1lIjoiQWRtaW4iLCJsYXN0bmFtZSI6IkFkbWluIiwiY2l0dGEiOiJCb2xvZ25hIiwiaW5kaXJpenpvIjoidmlhIFJvbWEgNCIsImFkbWluIjp0cnVlfSwiaWF0IjoxNzIyMDAwMjYyLCJleHAiOjE3MjIwMDIwNjJ9.ACoE0kUV5ri-gI5Tnd8UbQ8Aep-XQKciENj-T-62acM
 
 {
-    "status":"true"
+    "status":"consegnato"
 }
 
-### DELETE FROM ADMIN
-DELETE http://localhost:3000/api/orders/id 
-Content-Type: application/json
-Authorization: Bearer
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### DELETE FROM ADMIN
+DELETE http://localhost:3000/api/orders/7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJlbWFpbCI6ImFkaW1AZ21haWwuY29tIiwidXNlcm5hbWUiOiJBZG1pbiIsInBhc3N3b3JkIjoiNTY3IiwiZmlyc3RuYW1lIjoiQWRtaW4iLCJsYXN0bmFtZSI6IkFkbWluIiwiY2l0dGEiOiJCb2xvZ25hIiwiaW5kaXJpenpvIjoidmlhIFJvbWEgNCIsImFkbWluIjp0cnVlfSwiaWF0IjoxNzIyMDAxMTg2LCJleHAiOjE3MjIwMDI5ODZ9.0O4duPB5Q0Xo610Z4l97WE8LypNcrW2Ph_r24E_g82Y
