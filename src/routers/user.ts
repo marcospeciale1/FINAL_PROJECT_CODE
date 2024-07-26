@@ -5,6 +5,7 @@ import {
   authenticateToken,
   generateAccessToken,
 } from "../JWT/authenticateToken";
+import { userInfo } from "os";
 
 config();
 
@@ -16,6 +17,7 @@ client.connect();
 
 export const routerUser = express.Router();
 
+// registrazione utente
 routerUser.post("/register", (req: Request, res: Response) => {
   const {
     email,
@@ -37,13 +39,14 @@ routerUser.post("/register", (req: Request, res: Response) => {
         });
       } else {
         res.status(200).json({
-          message: "registered",
+          message: "registered with success",
         });
       }
     }
   );
 });
 
+// registrazione admin
 routerUser.post("/admin/register", (req: Request, res: Response) => {
   const {
     email,
@@ -65,13 +68,15 @@ routerUser.post("/admin/register", (req: Request, res: Response) => {
         });
       } else {
         res.status(200).json({
-          message: "registered",
+          message: "registered with success",
         });
       }
     }
   );
 });
 
+
+// login
 routerUser.post("/login", (req: Request, res: Response) => {
   const { email, password } = req.body;
 
@@ -103,6 +108,7 @@ routerUser.post("/login", (req: Request, res: Response) => {
   );
 });
 
+// logout
 routerUser.get("/logout", authenticateToken, (req: Request, res: Response) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -114,11 +120,12 @@ routerUser.get("/logout", authenticateToken, (req: Request, res: Response) => {
       });
     } else {
       res.status(200).json({
-        message: "logged out",
+        message: "logout whit success",
       });
     }
   });
 });
+
 
 routerUser.get(
   "/user/:id",
@@ -135,11 +142,12 @@ routerUser.get(
   }
 );
 
-// routerUser.get("/users", (req: Request, res: Response) => {
-//   client.query("SELECT * FROM users", (error, response) => {
-//     res.json(response.rows);
-//   });
-// });
+// get all user
+routerUser.get("/users", (req: Request, res: Response) => {
+  client.query("SELECT * FROM users", (error, response) => {
+    res.json(response.rows);
+  });
+});
 
 routerUser.delete(
   "/user/:id",

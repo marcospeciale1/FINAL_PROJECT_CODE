@@ -49,7 +49,7 @@ app.use("/api/auth", routerUser);
 /*****************************
  *       API PRODUCTS        *
  *****************************/
-app.use("/api/auth", routerProducts);
+app.use("/api/products", routerProducts);
 /*****************************
  *       API PRODUCTS        *
  *****************************/
@@ -57,7 +57,7 @@ app.use("/api/auth", routerProducts);
 /*****************************
  *       API CART            *
  *****************************/
-app.use("/api/auth", routerCart);
+app.use("/api/cart", routerCart);
 /*****************************
  *       API CART            *
  *****************************/
