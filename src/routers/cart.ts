@@ -4,6 +4,8 @@ import { config } from "dotenv";
 import { authenticateToken, JwtRequest } from "../JWT/authenticateToken";
 export const routerCart = express.Router();
 
+config()
+
 const client = createClient({
   connectionString: process.env.DATABASE_URL,
 });
