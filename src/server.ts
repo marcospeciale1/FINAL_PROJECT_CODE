@@ -1,13 +1,6 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from "dotenv";
-
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import {
-  generateAccessToken,
-  authenticateToken,
-} from "./JWT/authenticateToken";
 import { routerUser } from "./routers/user";
 import { routerProducts } from "./routers/products";
 import { routerCart } from "./routers/cart";
@@ -47,7 +40,8 @@ client.connect();
 /*****************************
  *       API USERS           *
  *****************************/
-app.use("/api/auth", routerUser)
+app.use("/api/auth", routerUser);
+
 /*****************************
  *       API USERS           *
  *****************************/
@@ -55,7 +49,7 @@ app.use("/api/auth", routerUser)
 /*****************************
  *       API PRODUCTS        *
  *****************************/
-app.use("/api/auth", routerProducts)
+app.use("/api/auth", routerProducts);
 /*****************************
  *       API PRODUCTS        *
  *****************************/
@@ -63,7 +57,7 @@ app.use("/api/auth", routerProducts)
 /*****************************
  *       API CART            *
  *****************************/
-app.use("/api/auth", routerCart)
+app.use("/api/auth", routerCart);
 /*****************************
  *       API CART            *
  *****************************/
