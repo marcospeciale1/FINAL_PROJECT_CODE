@@ -6,7 +6,7 @@ config()
 
 
 export interface JwtRequest extends Request{
-    user?: String | Object
+    user?: Object
 }
 
 export const authenticateToken = (req: JwtRequest, res: Response, next: NextFunction) => {
