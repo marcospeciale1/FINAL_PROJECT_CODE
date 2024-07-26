@@ -1,7 +1,7 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from "dotenv";
-import { authenticateToken, JwtRequest } from "../JWT/authenticateToken";
+import { authenticateToken, JwtRequest } from "../middleware/authenticateToken";
 export const routerProducts = express.Router();
 
 config();

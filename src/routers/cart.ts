@@ -1,7 +1,8 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from "dotenv";
-import { authenticateToken, JwtRequest } from "../JWT/authenticateToken";
+import { authenticateToken, JwtRequest } from "../middleware/authenticateToken";
+
 export const routerCart = express.Router();
 
 config()
@@ -9,14 +10,12 @@ config()
 const client = createClient({
   connectionString: process.env.DATABASE_URL,
 });
+
 client.connect();
 
 // Restituisce il contenuto attuale del carrello dell'utente.
 
 routerCart.get("", (req: Request, res: Response) => {
-  client.query(`SELECT * FROM carts`, function (error, response) {
-    res.json(response.rows);
-  });
 });
 
 // Aggiunge un prodotto al carrello dell'utente.
