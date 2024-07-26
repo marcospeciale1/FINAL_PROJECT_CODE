@@ -4,6 +4,8 @@ import { config } from "dotenv";
 import { authenticateToken, JwtRequest } from "../JWT/authenticateToken";
 export const routerCart = express.Router();
 
+config()
+
 const client = createClient({
   connectionString: process.env.DATABASE_URL,
 });
@@ -13,60 +15,85 @@ client.connect();
 
 routerCart.get("", (req: Request, res: Response) => {
   client.query(`SELECT * FROM carts`, function (error, response) {
-    res.status(200).json(response.rows);
+    res.json(response.rows);
   });
 });
 
 // Aggiunge un prodotto al carrello dell'utente.
 
-routerCart.post(
-  "/add/:id",
-  authenticateToken,
-  (req: JwtRequest, res: Response) => {
-    const access = req.user as { id: number; admin: boolean };
+routerCart.post("/add/:id", authenticateToken, (req: JwtRequest, res: Response) => {
+  const access = req.user as any;
+  const admin = access.user.admin;
+  const {id}=req.params
+  const {productid,quantity}=req.body
 
-    if (access.admin === true) {
-      client.query(
-        `INSERT INTO carts (userid, productid, quantity) VALUES ($1, $2, $3)`,
-        [req.params.id, req.body.productid, req.body.quantity],
-        function (error, response) {
-          if (error) res.status(500).json({ error });
-          else res.status(200).json(response.rows);
+  if (admin === true) {
+    client.query(
+      `INSERT INTO carts (userid, productid, quantity) VALUES ($1, $2, $3)`,
+      [id,productid,quantity],
+      function (error, response) {
+        if (error) {
+          return res.status(500).json({ error });
+        } else {
+          return res.status(200).json({ message: "Prodotto aggiunto nel carrello con successo" });
         }
-      );
-      res.status(200).json({ message: "Avvenuta con successo" });
-    } else {
-      res.status(200).json({ message: "Non sei autorizzato" });
-    }
+      }
+    );
+  } else {
+    return res.status(403).json({ message: "Non sei autorizzato" }); // Usa il codice di stato 403 per "Forbidden"
   }
-);
+});
 
 // Rimuove un prodotto dal carrello dell'utente.
 
-routerCart.delete("/remove/:id", (req: JwtRequest, res: Response) => {
-  const access = req.user as { id: number; admin: boolean };
-  if (access.admin === true) {
+routerCart.delete("/remove/:id", authenticateToken, (req: JwtRequest, res: Response) => {
+  const access = req.user as any;
+
+  if (!access) {
+    return res.status(401).json({ message: "Utente non autenticato" });
+  }
+
+  const admin = access.user.admin;
+  const { id } = req.params;
+
+  if (admin === true) {
     client.query(
       `DELETE FROM carts WHERE id = $1`,
-      [req.params.id],
+      [id],
       function (error, response) {
-        if (error) res.status(500).json({ error });
-        else res.status(200).json(response.rows);
+        if (error) {
+          return res.status(500).json({ error });
+        } else {
+          return res.status(200).json({ message: "Prodotto rimosso dal carrello con successo" });
+        }
       }
     );
-    res.status(200).json({ message: "Operazione avvenuta con successo" });
+  } else {
+    return res.status(403).json({ message: "Non sei autorizzato" });
   }
 });
 
 // Svuota il carrello dell'utente.
 
-routerCart.delete("/clear", (req: JwtRequest, res: Response) => {
-  const access = req.user as { id: number; admin: boolean };
-  if (access.admin === true) {
+
+routerCart.delete("/clear", authenticateToken, (req: JwtRequest, res: Response) => {
+  const access = req.user as any;
+
+  if (!access) {
+    return res.status(401).json({ message: "Utente non autenticato" });
+  }
+
+  const admin = access.user.admin;
+
+  if (admin === true) {
     client.query(`DELETE FROM carts`, function (error, response) {
-      if (error) res.status(500).json({ error });
-      else res.status(200).json(response.rows);
+      if (error) {
+        return res.status(500).json({ error });
+      } else {
+        return res.status(200).json({ message: "Carrello svuotato con successo" });
+      }
     });
-    res.status(200).json({ message: "Operazione avvenuta con successo" });
-  } else res.status(400).json({ message: "Non sei autorizzato" });
+  } else {
+    return res.status(403).json({ message: "Non sei autorizzato" });
+  }
 });
