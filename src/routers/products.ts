@@ -78,8 +78,9 @@ routerProducts.delete(
   authenticateToken,
   (req: JwtRequest, res: Response) => {
     const productId = req.params.id;
-    const access = req.user as { id: number; admin: boolean };
-    if (access.admin === true) {
+    const access = req.user as any;
+    const admin = access.user.admin
+    if (admin === true) {
       client.query(
         "DELETE FROM products WHERE id = $1",
         [productId],
