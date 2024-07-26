@@ -121,33 +121,41 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5L
 # |----------------------|
 
 
-# PRODOCTS SECTION
+# ORDERS SECTION
 
-
-### GET CART
-GET http://localhost:3000/api/cart
+### CREATE ORDER
+POST http://localhost:3000/api/orders
 Content-Type: application/json
-
-
-### ADD CART
-POST http://localhost:3000/api/cart/add/7
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJlbWFpbCI6ImFkaW1AZ21haWwuY29tIiwidXNlcm5hbWUiOiJBZG1pbiIsInBhc3N3b3JkIjoiNTY3IiwiZmlyc3RuYW1lIjoiQWRtaW4iLCJsYXN0bmFtZSI6IkFkbWluIiwiY2l0dGEiOiJCb2xvZ25hIiwiaW5kaXJpenpvIjoidmlhIFJvbWEgNCIsImFkbWluIjp0cnVlfSwiaWF0IjoxNzIxOTk3ODI0LCJleHAiOjE3MjE5OTk2MjR9.IPXRPU4_CPf53QhMxjKgkhUbQ8gIQw_U0lZPiKDqRYM
+Authorization: Bearer
 
 {
-    "productid":"6",
-    "quantity":"100"
-    
+    "userid":"",
+    "quantity":"",
+    "status":"",
+    "productid":""
 }
 
-### DELETE CART PRODUCT
-
-DELETE http://localhost:3000/api/cart/remove/14
+### ALL USER ORDER
+GET http://localhost:3000/api/orders/id
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJlbWFpbCI6ImFkaW1AZ21haWwuY29tIiwidXNlcm5hbWUiOiJBZG1pbiIsInBhc3N3b3JkIjoiNTY3IiwiZmlyc3RuYW1lIjoiQWRtaW4iLCJsYXN0bmFtZSI6IkFkbWluIiwiY2l0dGEiOiJCb2xvZ25hIiwiaW5kaXJpenpvIjoidmlhIFJvbWEgNCIsImFkbWluIjp0cnVlfSwiaWF0IjoxNzIxOTk4NzA5LCJleHAiOjE3MjIwMDA1MDl9.XQG0LGZy-cVyA6HNeQNHdawsZwq5pQMElfGNghV0EDE
+Authorization: Bearer
 
-
-### DELETE CART USER
-DELETE http://localhost:3000/api/cart/clear
+### ORDER DETAILS
+GET http://localhost:3000/api/orders/orderid
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJlbWFpbCI6ImFkaW1AZ21haWwuY29tIiwidXNlcm5hbWUiOiJBZG1pbiIsInBhc3N3b3JkIjoiNTY3IiwiZmlyc3RuYW1lIjoiQWRtaW4iLCJsYXN0bmFtZSI6IkFkbWluIiwiY2l0dGEiOiJCb2xvZ25hIiwiaW5kaXJpenpvIjoidmlhIFJvbWEgNCIsImFkbWluIjp0cnVlfSwiaWF0IjoxNzIxOTk4OTA0LCJleHAiOjE3MjIwMDA3MDR9.uBEICEYamagelBvfxfECt2fGIzfBgM3xaZZZTPdBQiQ
+Authorization: Bearer
+
+### CHANGE STATUS FROM ADMIN
+PATCH http://localhost:3000/api/orders/6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJlbWFpbCI6ImFkaW1AZ21haWwuY29tIiwidXNlcm5hbWUiOiJBZG1pbiIsInBhc3N3b3JkIjoiNTY3IiwiZmlyc3RuYW1lIjoiQWRtaW4iLCJsYXN0bmFtZSI6IkFkbWluIiwiY2l0dGEiOiJCb2xvZ25hIiwiaW5kaXJpenpvIjoidmlhIFJvbWEgNCIsImFkbWluIjp0cnVlfSwiaWF0IjoxNzIyMDAwMjYyLCJleHAiOjE3MjIwMDIwNjJ9.ACoE0kUV5ri-gI5Tnd8UbQ8Aep-XQKciENj-T-62acM
+
+{
+    "status":"consegnato"
+}
+
+### DELETE FROM ADMIN
+DELETE http://localhost:3000/api/orders/7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJlbWFpbCI6ImFkaW1AZ21haWwuY29tIiwidXNlcm5hbWUiOiJBZG1pbiIsInBhc3N3b3JkIjoiNTY3IiwiZmlyc3RuYW1lIjoiQWRtaW4iLCJsYXN0bmFtZSI6IkFkbWluIiwiY2l0dGEiOiJCb2xvZ25hIiwiaW5kaXJpenpvIjoidmlhIFJvbWEgNCIsImFkbWluIjp0cnVlfSwiaWF0IjoxNzIyMDAxMTg2LCJleHAiOjE3MjIwMDI5ODZ9.0O4duPB5Q0Xo610Z4l97WE8LypNcrW2Ph_r24E_g82Y
+
