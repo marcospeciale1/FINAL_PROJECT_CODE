@@ -118,4 +118,43 @@ Authorization: Bearer
 
 
 
+# |----------------------|
+
+# ORDERS SECTION
+
+### CREATE ORDER
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+Authorization: Bearer
+
+{
+    "userid":"",
+    "quantity":"",
+    "status":"",
+    "productid":""
+}
+
+### ALL USER ORDER
+GET http://localhost:3000/api/orders/id
+Content-Type: application/json
+Authorization: Bearer
+
+### ORDER DETAILS
+GET http://localhost:3000/api/orders/orderid
+Content-Type: application/json
+Authorization: Bearer
+
+### CHANGE STATUS FROM ADMIN
+PATCH http://localhost:3000/api/orders/id
+Content-Type: application/json
+Authorization: Bearer
+
+{
+    "status":"true"
+}
+
+### DELETE FROM ADMIN
+DELETE http://localhost:3000/api/orders/id 
+Content-Type: application/json
+Authorization: Bearer
 

@@ -4,6 +4,7 @@ import { config } from "dotenv";
 import { routerUser } from "./routers/user";
 import { routerProducts } from "./routers/products";
 import { routerCart } from "./routers/cart";
+import { routerOrders } from "./routers/order";
 
 /*****************************
  *                           *
@@ -65,7 +66,7 @@ app.use("/api/cart", routerCart);
 /*****************************
  *       API ORDERS          *
  *****************************/
-
+app.use("/api/orders", routerOrders);
 /*****************************
  *       API ORDERS          *
  *****************************/
