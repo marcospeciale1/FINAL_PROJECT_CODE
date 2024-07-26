@@ -1,11 +1,9 @@
 import { createClient } from "@vercel/postgres";
 import express, { Response, Request } from "express";
 import { config } from "dotenv";
-import {
-  authenticateToken,
-  generateAccessToken,
-} from "../JWT/authenticateToken";
+
 import { userInfo } from "os";
+import { generateAccessToken, authenticateToken } from "../middleware/authenticateToken";
 
 config();
 
